@@ -1,21 +1,20 @@
-
-import MovieCard from "../../components/movie-card"
-import Grid from "@mui/material/Grid"
-import Button from "@mui/material/Button"
+import { Grid, Button } from '@mui/material'
+import MovieCard from '../../components/movie-card'
+import { useGetFavMovies } from '../../hooks/use-fav'
 import './style.css'
-import useMovies from "../../hooks/use-movies"
 
-const HomePage = () => {
-    const {results, nextPage, loading} = useMovies();
-
+const FavPage = () => {
+    const {results, loading, nextPage, refetch} = useGetFavMovies()
     return (
-        <div className="homepage-container">
-            <section className="movies-container">
+        <section className="favpage-container">
+
+<section className="movies-container">
                 <Grid container spacing={2}>
                     {results.map((movie) => (
                         <Grid item key={movie.id}>
                             <MovieCard
-                                context="homepage"
+                                onMutateSuccess={() => refetch}
+                                context="fav"
                                 movieId={movie.id}
                                 title={movie.title}
                                 description={movie.overview}
@@ -26,8 +25,8 @@ const HomePage = () => {
                 <Button disabled={loading} onClick={nextPage} variant="contained">Load More</Button>
             </section>
 
-        </div>
+        </section>
     )
 }
 
-export default HomePage
+export default FavPage

@@ -6,10 +6,19 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import PropTypes from 'prop-types';
+import { useFavMutation } from '../../hooks/use-fav';
 
 
 
-const MovieCard = ({ imageURL, title}) => {
+const MovieCard = ({ imageURL, title, description, movieId, context, onMutateSuccess}) => {
+
+    const {mutate, isLoading} = useFavMutation()
+
+    const handleMarkAsFav = async () => {
+        await mutate(movieId, context === "homepage")
+        onMutateSuccess()
+    };
+
     return (
         <Card sx={{ maxWidth: 345 }}>
             <CardMedia
@@ -24,12 +33,11 @@ const MovieCard = ({ imageURL, title}) => {
                     {title}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                    Lizards are a widespread group of squamate reptiles, with over 6,000
-                    species, ranging across all continents except Antarctica
+                    {description}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
+                <Button onClick={handleMarkAsFav} disabled={isLoading} size="small">{context === "homepage" ? "Mark Fav" : "Remove Fav"}</Button>
                 <Button size="small">Learn More</Button>
             </CardActions>
         </Card>
@@ -37,8 +45,12 @@ const MovieCard = ({ imageURL, title}) => {
 }
 
 MovieCard.PropTypes = {
+    movieId : PropTypes.string,
     imageURL : PropTypes.string,
     title : PropTypes.string,
+    description : PropTypes.string,
+    context : PropTypes.oneOf(['homepage', 'fav']),
+    onMutateSuccess : PropTypes.func,
 }
 
 export default MovieCard

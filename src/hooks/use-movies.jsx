@@ -18,7 +18,7 @@ const useMovies = () => {
         setPage(page + 1)
     }
 
-    return {results, page, loading}
+    return {results, page, loading, nextPage}
 };
 
 export default useMovies

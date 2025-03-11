@@ -8,6 +8,10 @@ const links = [
         path: '/'
     },
     {
+        title: 'Fav List',
+        path: '/fav-list'
+    },
+    {
         title: 'Watch List',
         path: '/watchlist'
     },
