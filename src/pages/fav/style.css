@@ -1,3 +1,80 @@
 .favpage-container {
     padding: 10px 20px;
+    background-color: black;
+    min-height: 100vh;
+}
+
+.movies-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.MuiGrid-container {
+    justify-content: center;
+}
+
+.MuiGrid-item {
+    display: flex;
+}
+
+/* Movie Card Styling */
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 420px; 
+    background-color: #333; 
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+    background-color: black;
+}
+
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: 100%;
+    color: white;
+}
+
+.movie-card h3 {
+    font-size: 16px;
+    margin: 10px 0;
+    color: white; 
+}
+
+.movie-card p {
+    font-size: 14px;
+    color: white; 
+    margin-bottom: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Button Alignment */
+.movie-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: auto; 
 }

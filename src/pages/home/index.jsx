@@ -13,7 +13,7 @@ const HomePage = () => {
             <section className="movies-container">
                 <Grid container spacing={2}>
                     {results.map((movie) => (
-                        <Grid item key={movie.id}>
+                        <Grid item key={movie.id} xs={6} sm={4} md={2.4} lg={2} xl={2} style={{ display: "flex" }}>
                             <MovieCard
                                 context="homepage"
                                 movieId={movie.id}
